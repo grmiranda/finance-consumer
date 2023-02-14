@@ -5,5 +5,5 @@
 </template>
 
 <script setup lang="ts">
-import AuthRegister from '@/components/organims/auth/Register.vue'
+import AuthRegister from '@/components/organims/auth/register.vue'
 </script>

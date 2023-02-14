@@ -5,5 +5,5 @@
 </template>
 
 <script setup lang="ts">
-import AuthLogin from '@/components/organims/auth/Login.vue'
+import AuthLogin from '@/components/organims/auth/login.vue'
 </script>

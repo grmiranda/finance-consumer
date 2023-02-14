@@ -1,5 +1,5 @@
 <template>
-  <section class="bg-white m-8 w-full rounded-2xl">
+  <section class="bg-white m-4 md:m-8 w-full rounded-2xl">
     <QuotesDashboard />
   </section>
 </template>
@@ -8,7 +8,7 @@
 import { onBeforeMount } from 'vue'
 import { useRouter } from 'vue-router'
 import { useCookies } from 'vue3-cookies'
-import QuotesDashboard from '@/components/organims/QuotesDashboard.vue'
+import QuotesDashboard from '@/components/organims/quotesDashboard.vue'
 
 const router = useRouter()
 const { cookies } = useCookies()
