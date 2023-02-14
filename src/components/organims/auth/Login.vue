@@ -24,23 +24,56 @@
         </router-link>
         <ButtonPrimary type="submit">Login</ButtonPrimary>
       </div>
+      <div class="flex justify-end text-xs text-red-400">
+        {{ errorMessage }}
+      </div>
     </form>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
+import { useRouter } from 'vue-router'
+import { useCookies } from 'vue3-cookies'
 import InputText from '@/components/atoms/input/text.vue'
 import TitlePrimary from '@/components/atoms/title/primary.vue'
 import ButtonPrimary from '@/components/atoms/button/primary.vue'
+
+const router = useRouter()
+const { cookies } = useCookies()
 const username = ref('')
 const password = ref('')
-const errors = reactive({
-  username: null,
-  password: null,
+const errorMessage = ref('')
+let errors = reactive({
+  username: '',
+  password: '',
 })
 
+const clearValidation = () => {
+  errors.username = ''
+  errors.password = ''
+  errorMessage.value = ''
+}
+
 const login = () => {
-  console.log(username.value, password.value)
+  clearValidation()
+  const usernameValid = !!username.value
+  const passwordValid = !!password.value
+  if (!usernameValid) {
+    errors.username = 'Provide a valid Username'
+  }
+  if (!passwordValid) {
+    errors.password = 'Provide a valid Password'
+  }
+
+  if (usernameValid && passwordValid) {
+    const userPassword = localStorage.getItem(username.value)
+    if (userPassword && userPassword === password.value) {
+      cookies.set('user_session', '25j_7Sl6xDq2Kc3ym0fmrSSk2xV2XkUkX', '10s')
+      router.push('/dashboard')
+    } else {
+      errorMessage.value = 'Invalid Credentials'
+    }
+  }
 }
 </script>

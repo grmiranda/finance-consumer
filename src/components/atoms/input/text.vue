@@ -13,7 +13,7 @@ defineProps({
   type: { type: String, default: "text" },
   title: String,
   modelValue: String,
-  error: String || null || undefined,
+  error: String
 })
 
 const emit = defineEmits(['update:modelValue'])
