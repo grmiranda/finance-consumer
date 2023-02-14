@@ -1,6 +1,9 @@
-# finance-consumer
+# Ginance Consumer by: Gabriel Reis Miranda
 
-This template should help get you started developing with Vue 3 in Vite.
+-> Components folder follow Atomic Desing Rules
+-> .env is already on git (Should be in gitIgnore, left there just because it's a code challenge only)
+-> User Session is blocked in 30s, after thats it will expire, and if you reload or change the page it will logout
+-> There is no Timing function to update data (since the API has a limit of 400 requests per day), so I add a Refresh button to update data and store it in history too
 
 ## Recommended IDE Setup
 

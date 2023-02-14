@@ -69,7 +69,7 @@ const login = () => {
   if (usernameValid && passwordValid) {
     const userPassword = localStorage.getItem(username.value)
     if (userPassword && userPassword === password.value) {
-      cookies.set('user_session', '25j_7Sl6xDq2Kc3ym0fmrSSk2xV2XkUkX', '1hs')
+      cookies.set('user_session', username.value, '30s')
       router.push('/dashboard')
     } else {
       errorMessage.value = 'Invalid Credentials'
