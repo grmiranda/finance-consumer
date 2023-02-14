@@ -49,8 +49,8 @@ const chartData = computed(() => {
     props.type === 'currencies'
       ? financeStore.currenciesHistory
       : financeStore.stocksHistory
-  const labels = []
-  const datasetsData = []
+  const labels: Array<String> = []
+  const datasetsData: Array<Number> = []
   history.forEach((financeData) => {
     labels.push(
       `${addZero(financeData.time.getHours())}:${addZero(
@@ -60,7 +60,7 @@ const chartData = computed(() => {
     const variation = financeData.history.find((quote) => {
       return quote.name === props.id
     })
-    datasetsData.push(variation?.variation)
+    datasetsData.push(variation ? variation.variation : 0)
   })
   return {
     labels,
@@ -78,7 +78,7 @@ const goBack = () => {
   router.go(-1)
 }
 
-const addZero = (number) => {
+const addZero = (number: number) => {
   return number < 10 ? '0' + number : number
 }
 </script>
