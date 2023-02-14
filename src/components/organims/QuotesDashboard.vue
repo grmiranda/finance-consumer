@@ -1,5 +1,5 @@
 <template>
-  <div class="p-4 md:p-8">
+  <div class="p-4 md:p-8 overflow-y-scroll h-full">
     <div class="flex justify-between mb-6">
       <TitlePrimary>Dashboard</TitlePrimary>
       <ButtonPrimary @click="updateData">

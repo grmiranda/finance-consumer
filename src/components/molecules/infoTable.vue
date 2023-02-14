@@ -4,7 +4,7 @@
     <div>
       <table class="w-full">
         <tr class="capitalize">
-          <th v-for="headerKey in tableHeaders" :key="headerKey" class="p-4">
+          <th v-for="headerKey in tableHeaders" :key="headerKey" class="py-4">
             {{ headerKey }}
           </th>
         </tr>
@@ -20,7 +20,7 @@
           <td
             v-for="headerKey in tableHeaders"
             :key="`${headerKey}-${indexData}`"
-            :class="['p-2', getClassColor(headerKey, rowData[headerKey])]"
+            :class="['py-2', getClassColor(headerKey, rowData[headerKey])]"
           >
             {{ rowData[headerKey] ? rowData[headerKey] : '--' }}
           </td>
