@@ -11,18 +11,20 @@
         v-if="financeStore.currencies"
         title="Currencies:"
         :data="financeStore.currencies"
+        type="currencies"
       />
       <InfoTable
         v-if="financeStore.stocks"
         title="Stocks:"
         :data="financeStore.stocks"
+        type="stocks"
       />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { inject } from 'vue'
+import { inject, onMounted } from 'vue'
 import { useFinanceStore } from '@/stores/finance'
 import TitlePrimary from '@/components/atoms/title/primary.vue'
 import InfoTable from '@/components/molecules/infoTable.vue'
@@ -31,6 +33,10 @@ import IconRefresh from '@/components/atoms/icon/refresh.vue'
 
 const axios: any = inject('axios')
 const financeStore = useFinanceStore()
+
+onMounted(() => {
+  updateData()
+})
 
 const updateData = () => {
   axios

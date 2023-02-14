@@ -1,15 +1,22 @@
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import { defineStore } from 'pinia'
+import type { FinanceHistory, FinanceData } from '@/helpers/types'
 
 export const useFinanceStore = defineStore('finance', () => {
-  const currencies = ref<Array<Object>>([])
-  const stocks = ref<Array<Object>>([])
+  const currenciesHistory = ref<Array<FinanceHistory>>([])
+  const stocksHistory = ref<Array<FinanceHistory>>([])
+  const currencies = ref<Array<FinanceData>>([])
+  const stocks = ref<Array<FinanceData>>([])
 
   function setCurrencies(currenciesResponse: Array<Object>) {
     delete currenciesResponse.source
     currencies.value = []
     Object.values(currenciesResponse).forEach((currency) => {
       currencies.value.push(currency)
+    })
+    currenciesHistory.value.push({
+      time: new Date(),
+      history: currencies.value,
     })
   }
   function setStocks(stocksResponse: Array<Object>) {
@@ -18,7 +25,18 @@ export const useFinanceStore = defineStore('finance', () => {
     Object.values(stocksResponse).forEach((currency) => {
       stocks.value.push(currency)
     })
+    stocksHistory.value.push({
+      time: new Date(),
+      history: stocks.value,
+    })
   }
 
-  return { currencies, stocks, setCurrencies, setStocks }
+  return {
+    currencies,
+    stocks,
+    currenciesHistory,
+    stocksHistory,
+    setCurrencies,
+    setStocks,
+  }
 })

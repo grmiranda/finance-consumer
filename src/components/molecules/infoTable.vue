@@ -15,6 +15,7 @@
             'cursor-pointer hover:bg-gray-400',
             { 'bg-gray-300': indexData % 2 === 0 },
           ]"
+          @click="goToChart(rowData.name)"
         >
           <td
             v-for="headerKey in tableHeaders"
@@ -31,12 +32,17 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
+import { useRouter } from 'vue-router'
 import TitleSecondary from '@/components/atoms/title/secondary.vue'
+import type { FinanceData } from '@/helpers/types'
 
 const props = defineProps({
   title: String,
-  data: { type: Array<Object>, required: true },
+  data: { type: Array<FinanceData>, required: true },
+  type: { tpe: String, required: true },
 })
+
+const router = useRouter()
 
 const tableHeaders = computed(() => {
   if (props.data[0]) {
@@ -44,6 +50,10 @@ const tableHeaders = computed(() => {
   }
   return []
 })
+
+const goToChart = (name: String) => {
+  router.push(`/dashboard/quote/${props.type}/${name}`)
+}
 
 const getClassColor = (key: String, value: Number) => {
   if (key === 'variation') {

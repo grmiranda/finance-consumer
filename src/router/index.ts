@@ -1,8 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import BlancLayout from '../components/layouts/blancLayout.vue'
-import Login from '../views/Login.vue'
-import Register from '../views/Register.vue'
-import Dashboard from '../views/Dashboard.vue'
+import BlancLayout from '@/components/layouts/blancLayout.vue'
+import Login from '@/views/login.vue'
+import Register from '@/views/Register.vue'
+import Dashboard from '@/views/Dashboard.vue'
+import Quote from '@/views/Quote.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -31,6 +32,11 @@ const router = createRouter({
           path: '',
           name: 'Dashboard',
           component: Dashboard,
+        },
+        {
+          path: 'quote/:type/:id',
+          name: 'Quote',
+          component: Quote,
         },
       ],
     },
